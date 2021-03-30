@@ -14,6 +14,7 @@ export interface FoodAdd {
   price: number;
   available: boolean;
   image: string;
+  
 }
 
 export default function Dashboard() {
@@ -25,11 +26,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function loadFoods() {
-      api.get('foods').then((res) => {
-        setFoods(res.data);
-      });
-      loadFoods();
+      const response = await api.get('/foods').then((response) => response.data)
+      setFoods(response)
     }
+    loadFoods()
   }, []);
 
   async function handleAddFood(food: FoodAdd) {

@@ -4,10 +4,10 @@ import logo from '../../assets/logo.svg'
 import { Container } from './styles';
 
 interface PropsHeader{
-  
+  openModal: ()=>void
 }
 
-export function Header(openModal) {
+export function Header({openModal}:PropsHeader) {
   return (
     <Container>
       <header>

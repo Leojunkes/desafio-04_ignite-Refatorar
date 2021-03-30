@@ -1,11 +1,19 @@
-import { Component, createRef } from 'react';
+import { createRef } from 'react';
 import { FiCheckSquare } from 'react-icons/fi';
 
 import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
+import { FoodAdd } from '../../pages/Dashboard/index';
 
-export default function ModalEditFood({ isOpen, setIsOpen, editingFood }) {
+interface ModalEditFoodProps{
+  isOpen: boolean
+  setIsOpen:()=>void
+  editingFood:FoodAdd
+  handleUpdateFood:(data:FoodAdd)=>void
+}
+
+export default function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUpdateFood }) {
   this.formRef = createRef();
 
   const handleSubmit = async ({ isOpen, setIsOpen, handleUpdateFood }) => {
