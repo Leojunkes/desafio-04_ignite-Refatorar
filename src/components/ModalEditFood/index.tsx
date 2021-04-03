@@ -5,6 +5,7 @@ import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 import { FoodAdd } from '../../pages/Dashboard/index';
+import { FormHandles} from '@unform/core';
 
 interface ModalEditFoodProps{
   isOpen: boolean
@@ -13,12 +14,12 @@ interface ModalEditFoodProps{
   handleUpdateFood:(data:FoodAdd)=>void
 }
 
-export default function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUpdateFood }) {
-  this.formRef = createRef();
+export default function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUpdateFood }:ModalEditFoodProps) {
+  const formRef = createRef<FormHandles>();
 
-  const handleSubmit = async ({ isOpen, setIsOpen, handleUpdateFood }) => {
+  const handleSubmit = (data:FoodAdd) => {
     //const {  setIsOpen, handleUpdateFood } = this.props;
-    const data = { isOpen, handleUpdateFood };
+    
 
     handleUpdateFood(data);
     setIsOpen();
@@ -29,7 +30,7 @@ export default function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUp
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form
-        ref={this.formRef}
+        ref={formRef}
         onSubmit={handleSubmit}
         initialData={editingFood}
       >
